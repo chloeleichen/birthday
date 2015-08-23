@@ -1,5 +1,5 @@
 {
-  "name": "beers",
+  "name": "birthday",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/chloeleichen/beers.git"
+    "url": "https://github.com/chloeleichen/birthday.git"
   },
   "author": "@chloechenlei",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/chloeleichen/beers/issues"
+    "url": "https://github.com/chloeleichen/birthday/issues"
   },
-  "homepage": "https://github.com/chloeleichen/beers",
+  "homepage": "https://github.com/chloeleichen/birthday",
   "devDependencies": {
     "angular": "^1.4.4",
     "angular-mocks": "^1.4.4",

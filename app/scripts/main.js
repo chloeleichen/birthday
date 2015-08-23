@@ -2,9 +2,9 @@
   'use strict';
   var angular = require('angular');
   //create module
-  var beer = angular.module('beer', []);
+  var birthday = angular.module('birthday', []);
   //create controller 
-  beer.controller('MainController', require('./controllers/MainController'));
+  birthday.controller('MainController', require('./controllers/MainController'));
 
 })();
 

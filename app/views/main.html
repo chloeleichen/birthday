@@ -1,13 +1,17 @@
-<section>
-  <h1> {{Hi, You are invited}} to Jeremy's 40 Party!</h1>
-  <button class="btn"> {{RSVP Now}}</button> or 
-  <button class="btn"> I cannot come</button>
-  <button class="btn"> {{Decide Later}} </button>
+<section class="head">
+  <h1> {{intro}} to Jeremy's 40 Party!</h1>
 </section>
-<section>
+<section class="main">
+<div class='rsvp'>
+  <button class="btn btn-primary" disabled> [[RSVP Now]]</button>
+  <button class="btn btn-primary" disabled> [[We can't make it]] </button>
+  <button class="btn btn-primary" disabled> [[Decide Later]] </button>
+</div>
+<div class="info">
   <div><label>location:</label> Some location </div>
-  <div><label>Date and time</label>14th Nov, 2015</div>
+  <div><label>Date and time</label><time datetime="2015-11-14 12:00">14th Nov, 2015</time></div>
 </section>
+</div>
 <aside class="info-box">
-<div>{{Great, see you there!}}</div>
+<div>[[Great, see you there!]]</div>
 </aside>
