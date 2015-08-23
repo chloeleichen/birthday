@@ -18,8 +18,7 @@
       expect(scope.setMessage("", 0)).toEqual("Hi stranger, looks like you are not on the guest list to ");
     });
     it("Check guest list", function(){
-      var val = "John", 
-      arr = [{
+      var arr = [{
         "name": "John",
         "rsvp": "0",
         "number": "1"
