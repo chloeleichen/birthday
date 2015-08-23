@@ -26,7 +26,7 @@ module.exports = function($scope, $location, $http){
       action: setRsvp(2)
     },
     cancel:{
-      label: "Cancel",
+      label: "Cancel RSVP",
       prompt:"You have canceled you RSVP, you'll be missed",
       action: setRsvp(3)
     },
@@ -41,7 +41,7 @@ module.exports = function($scope, $location, $http){
       id: 0,
       status: "init",
       msg: "You are invited to ",
-      btn: [actions.rsvp.label, actions.cancel.label]
+      btn: [actions.rsvp.label, actions.decline.label]
     },
     {
       id: 1,
