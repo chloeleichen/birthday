@@ -1,11 +1,20 @@
-'use strict';
-module.exports = function($scope, $location){
-  // $scope.name
+module.exports = function($scope, $location, $http){
+  'use strict';
+  var rsvpStatus = 0,
+      empObj = {
+              "name": null,
+              "rsvp": null,
+              "number": null
+              };
+
+  $scope.guests =[];
+  $scope.path = $location.path().replace(/^\/|\/$/g, '');
+  $scope.guest;
+
   var rsvp = "RSVP", 
       decline ="decline", 
       cancel = "cancel", 
       pending ="Decide later";
-
   var welcome =[
     {
       id: 0,
@@ -28,7 +37,7 @@ module.exports = function($scope, $location){
     {
       id: 3,
       status: "canceled",
-      msg: "You have canceled your RSVP",
+      msg: "You have canceled your RSVP to ",
       btn: [rsvp, pending]
     },
     {
@@ -38,21 +47,49 @@ module.exports = function($scope, $location){
       btn: [rsvp, cancel]
     }
   ];
-
-  var rsvpStatus = 0;
   $scope.setMessage = function(guestName, rsvp){
     if(guestName){
-      return ("Hi," + $scope.guestName +", "+ welcome[rsvp].msg);
+      return ("Hi " + guestName +", "+ welcome[rsvp].msg);
     } else{
-      return( "Hi stranger, looks like you are not on the guestlist to ");
+      return( "Hi stranger, looks like you are not on the guest list to ");
     }
   };
 
-  $scope.path = $location.path().replace(/^\/|\/$/g, '');
-  $scope.guestName = null;
-  $scope.intro = $scope.setMessage($scope.guestName, rsvpStatus);
+  $scope.getGuest = function(value, array){
+    var currentGuest = array.filter(function(item){
+      return (item.name.toLowerCase() === value);
+    });
+    if (currentGuest.length === 1){
+      return currentGuest[0];
+    }else{
+      return empObj;
+      }
+  };
+
+  function init(response){
+    $scope.guests = response;
+    $scope.guest = $scope.getGuest($scope.path, $scope.guests);
+    $scope.guestName = $scope.getGuest($scope.path, $scope.guests).name;
+    $scope.intro = $scope.setMessage($scope.guestName, rsvpStatus);
+  };
 
 
+  $http.get('./../data.json')
+  .success(function(response){
+    init(response);
+  })
+  .error(function(err){
+    console.log(err);
+  });
 
+  $scope.save = function(guest){
+    $http.post('./../data.json', guest)
+    .success(function(){
+      console.log("saved");
+    })
+    .error(function(err){
+      console.log(err);
+    });
+  }
 
 }
