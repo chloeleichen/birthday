@@ -21,17 +21,20 @@
       var val = "John", 
       arr = [{
         "name": "John",
-        "rsvp": "",
+        "rsvp": "0",
         "number": "1"
         },
         {
         "name": "Linden and Daisy",
-        "rsvp": "",
+        "rsvp": "2",
         "number": "2"
         }];
       expect(scope.getGuest("john", arr).name).toBe("John");
       expect(scope.getGuest("linden and daisy", arr).name).toBe("Linden and Daisy");
       expect(scope.getGuest("", arr).name).toBe(null);
+      expect(scope.getButtons(scope.getGuest("john", arr).rsvp)).toEqual(['RSVP', 'Cancel']);
+      expect(scope.getButtons(scope.getGuest("linden and daisy", arr).rsvp)).toEqual(['RSVP', 'Decide later']);
+
     });
   });
 });

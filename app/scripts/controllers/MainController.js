@@ -1,57 +1,84 @@
 module.exports = function($scope, $location, $http){
   'use strict';
-  var rsvpStatus = 0,
-      empObj = {
+   var empObj = {
               "name": null,
-              "rsvp": null,
-              "number": null
+              "rsvp": 5,
+              "number": 0
               };
 
   $scope.guests =[];
   $scope.path = $location.path().replace(/^\/|\/$/g, '');
   $scope.guest;
 
-  var rsvp = "RSVP", 
-      decline ="decline", 
-      cancel = "cancel", 
-      pending ="Decide later";
+  function setRsvp(num){
+    console.log(num);
+  };
+
+  var actions = {
+    rsvp: {
+      label: "RSVP",
+      prompt:"Great, see you there",
+      action: setRsvp(1)
+    },
+    decline:{
+      label: "Decline",
+      prompt:"Sorry to hear that, you'll be missed",
+      action: setRsvp(2)
+    },
+    cancel:{
+      label: "Cancel",
+      prompt:"You have canceled you RSVP, you'll be missed",
+      action: setRsvp(3)
+    },
+    pending: {
+      label: "Decide later",
+      prompt:"Sure, you can tell us later",
+      action: setRsvp(4)
+    }
+  };
   var welcome =[
     {
       id: 0,
       status: "init",
       msg: "You are invited to ",
-      btn: [rsvp, cancel]
+      btn: [actions.rsvp.label, actions.cancel.label]
     },
     {
       id: 1,
       status: "accespted",
       msg: "You have RSVPed to ",
-      btn: [cancel, pending]
+      btn: [actions.cancel.label, actions.pending.label]
     },
     {
       id: 2,
       status: "declined",
       msg: "You won't be coming to ",
-      btn: [rsvp, pending]
+      btn: [actions.rsvp.label, actions.pending.label]
     },
     {
       id: 3,
       status: "canceled",
       msg: "You have canceled your RSVP to ",
-      btn: [rsvp, pending]
+      btn: [actions.rsvp.label, actions.pending.label]
     },
     {
       id: 4,
       status: "pending",
       msg: "You are invited to ",
-      btn: [rsvp, cancel]
+      btn: [actions.rsvp.label, actions.cancel.label]
+    },
+    {
+      id: 5,
+      status: "noaccess",
+      msg: "Hi stranger, looks like you are not on the guest list to ",
+      btn: []
     }
   ];
   $scope.setMessage = function(guestName, rsvp){
     if(guestName){
       return ("Hi " + guestName +", "+ welcome[rsvp].msg);
     } else{
-      return( "Hi stranger, looks like you are not on the guest list to ");
+      return(welcome[5].msg);
     }
   };
 
@@ -66,11 +93,16 @@ module.exports = function($scope, $location, $http){
       }
   };
 
+  $scope.getButtons = function(index){
+    return welcome[index].btn;
+  }
+
   function init(response){
     $scope.guests = response;
     $scope.guest = $scope.getGuest($scope.path, $scope.guests);
-    $scope.guestName = $scope.getGuest($scope.path, $scope.guests).name;
-    $scope.intro = $scope.setMessage($scope.guestName, rsvpStatus);
+    $scope.guestName = $scope.guest.name;
+    $scope.intro = $scope.setMessage($scope.guestName, $scope.guest.rsvp);
+    $scope.buttons = $scope.getButtons($scope.guest.rsvp);
   };
 
 

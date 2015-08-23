@@ -2,11 +2,11 @@
   <h1> {{intro}} to Jeremy's 40th Party!</h1>
 </section>
 <section class="main">
-<div class='rsvp'>
-  <button class="btn btn-primary" disabled> [[RSVP Now]]</button>
-  <button class="btn btn-primary" disabled> [[We can't make it]] </button>
-  <button class="btn btn-primary" disabled> [[Decide Later]] </button>
-</div>
+<ul class="rsvp list-reset" >
+<li ng-repeat ="(key, value) in buttons">
+<button class="btn btn-primary m1" value="{{value}}" >{{value}}</button>
+</li>
+</ul>
 <div class="info">
   <div><label>location:</label> Some location </div>
   <div><label>Date and time</label><time datetime="2015-11-14 12:00">14th Nov, 2015</time></div>
