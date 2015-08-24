@@ -2,16 +2,20 @@
   <h1> {{intro}} to Jeremy's 40th Party!</h1>
 </section>
 <section class="main">
-<ul class="rsvp list-reset" >
-<li ng-repeat ="(key, value) in buttons">
-<button class="btn btn-primary m1" value="{{value}}" >{{value}}</button>
-</li>
-</ul>
+<div class="rsvp-group list-reset" ng-class="setClass()" >
+<div>
+<button class="btn btn-1 m1 btn-outline" ng-click="takeAction(1)" >RSVP</button>
+<button class="btn btn-2 m1 btn-outline" ng-click="takeAction(2)" >Decline</button>
+</div>
+<div>
+<button class="btn btn-3 m1 btn-outline block" ng-click="takeAction(3)" >Decide Later</button>
+</div>
+</div>
 <div class="info">
   <div><label>location:</label> Some location </div>
   <div><label>Date and time</label><time datetime="2015-11-14 12:00">14th Nov, 2015</time></div>
 </section>
 </div>
 <aside class="info-box">
-<div>[[Great, see you there!]]</div>
+<div>{{prompt}}</div>
 </aside>

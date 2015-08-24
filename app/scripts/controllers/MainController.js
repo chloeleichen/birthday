@@ -9,81 +9,54 @@ module.exports = function($scope, $location, $http){
   $scope.guests =[];
   $scope.path = $location.path().replace(/^\/|\/$/g, '');
   $scope.guest;
+  $scope.prompt;
 
   function setRsvp(num){
     console.log(num);
   };
 
-  var actions = {
-    rsvp: {
-      label: "RSVP",
-      prompt:"Great, see you there",
-      action: setRsvp(1)
-    },
-    decline:{
-      label: "Decline",
-      prompt:"Sorry to hear that, you'll be missed",
-      action: setRsvp(2)
-    },
-    cancel:{
-      label: "Cancel RSVP",
-      prompt:"You have canceled you RSVP, you'll be missed",
-      action: setRsvp(3)
-    },
-    pending: {
-      label: "Decide later",
-      prompt:"Sure, you can tell us later",
-      action: setRsvp(4)
-    }
-  };
   var welcome =[
     {
-      id: 0,
-      status: "init",
+      //init
+      status: "0",
       msg: "You are invited to ",
-      btn: [actions.rsvp.label, actions.decline.label]
+      prompt: ""
     },
     {
-      id: 1,
-      status: "accespted",
+      //rsvped
+      status: "1",
       msg: "You have RSVPed to ",
-      btn: [actions.cancel.label, actions.pending.label]
+      prompt: "Great, see you there"
     },
     {
-      id: 2,
-      status: "declined",
+      // declined 
+      status: "2",
       msg: "You won't be coming to ",
-      btn: [actions.rsvp.label, actions.pending.label]
+      prompt: "Sorry to hear that, you'll be missed"
     },
     {
-      id: 3,
-      status: "canceled",
-      msg: "You have canceled your RSVP to ",
-      btn: [actions.rsvp.label, actions.pending.label]
+      //pending 
+      status: "3",
+      msg: "You have a pending invitation to ",
+      prompt: "Sure, you can tell us later"
     },
     {
-      id: 4,
-      status: "pending",
-      msg: "You are invited to ",
-      btn: [actions.rsvp.label, actions.cancel.label]
-    },
-    {
-      id: 5,
-      status: "noaccess",
+      //noAccess
+      status: "4",
       msg: "Hi stranger, looks like you are not on the guest list to ",
-      btn: []
+      prompt: ""
     }
   ];
   $scope.setMessage = function(guestName, rsvp){
     if(guestName){
       return ("Hi " + guestName +", "+ welcome[rsvp].msg);
     } else{
-      return(welcome[5].msg);
+      return(welcome[4].msg);
     }
   };
 
-  $scope.getGuest = function(value, array){
-    var currentGuest = array.filter(function(item){
+  $scope.getGuest = function(value, arr){
+    var currentGuest = arr.filter(function(item){
       return (item.name.toLowerCase() === value);
     });
     if (currentGuest.length === 1){
@@ -93,8 +66,15 @@ module.exports = function($scope, $location, $http){
       }
   };
 
-  $scope.getButtons = function(index){
-    return welcome[index].btn;
+  $scope.setClass = function(){
+    return 'rsvp'+ $scope.guest.rsvp;
+  }
+
+  $scope.takeAction = function(i){
+    $scope.prompt = welcome[i].prompt;
+    $scope.guest.rsvp = i;
+    console.log($scope.guest);
+    $scope.save();
   }
 
   function init(response){
@@ -102,26 +82,24 @@ module.exports = function($scope, $location, $http){
     $scope.guest = $scope.getGuest($scope.path, $scope.guests);
     $scope.guestName = $scope.guest.name;
     $scope.intro = $scope.setMessage($scope.guestName, $scope.guest.rsvp);
-    $scope.buttons = $scope.getButtons($scope.guest.rsvp);
   };
 
 
   $http.get('./../data.json')
-  .success(function(response){
-    init(response);
-  })
-  .error(function(err){
+  .then(function(response){
+    init(response.data);
+  },
+  function(err){
     console.log(err);
   });
 
   $scope.save = function(guest){
-    $http.post('./../data.json', guest)
-    .success(function(){
-      console.log("saved");
-    })
-    .error(function(err){
+    var updatedRsvp = angular.toJson($scope.guest.rsvp);
+    $http.post('./../data.json', updatedRsvp)
+    .then(function(){
+    },
+    function(err){
       console.log(err);
     });
   }
-
 }

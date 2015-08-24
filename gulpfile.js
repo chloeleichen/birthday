@@ -22,6 +22,10 @@ gulp.task('browserify', function() {
     insertGlobals: true,
     debug: true
   }))
+  .on('error', function (err) {
+            console.log(err.toString());
+            this.emit("end");
+  })
   // Bundle to a single file
   .pipe(concat('bundle.js'))
   // Output it to our dist folder
