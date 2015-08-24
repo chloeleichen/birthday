@@ -81,6 +81,9 @@ module.exports = function($scope, $location, $http){
     $scope.intro = $scope.setMessage($scope.guestName, $scope.guest.rsvp);
   };
 
+// once we have got data from firebase 
+var data = [];
+init(data);
 
   // $http.get('./../data.json')
   // .then(function(response){
