@@ -8,12 +8,8 @@ module.exports = function($scope, $location, $http){
 
   $scope.guests =[];
   $scope.path = $location.path().replace(/^\/|\/$/g, '');
-  $scope.guest;
-  $scope.prompt;
-
-  function setRsvp(num){
-    console.log(num);
-  };
+  $scope.guest = empObj;
+  $scope.prompt = "";
 
   var welcome =[
     {
@@ -62,6 +58,7 @@ module.exports = function($scope, $location, $http){
     if (currentGuest.length === 1){
       return currentGuest[0];
     }else{
+      // wrong hash, access denied
       return empObj;
       }
   };
@@ -74,7 +71,7 @@ module.exports = function($scope, $location, $http){
     $scope.prompt = welcome[i].prompt;
     $scope.guest.rsvp = i;
     console.log($scope.guest);
-    $scope.save();
+    //$scope.save();
   }
 
   function init(response){
@@ -85,21 +82,15 @@ module.exports = function($scope, $location, $http){
   };
 
 
-  $http.get('./../data.json')
-  .then(function(response){
-    init(response.data);
-  },
-  function(err){
-    console.log(err);
-  });
+  // $http.get('./../data.json')
+  // .then(function(response){
+  //   init(response.data);
+  // },
+  // function(err){
+  //   console.log(err);
+  // });
 
-  $scope.save = function(guest){
-    var updatedRsvp = angular.toJson($scope.guest.rsvp);
-    $http.post('./../data.json', updatedRsvp)
-    .then(function(){
-    },
-    function(err){
-      console.log(err);
-    });
-  }
+  // $scope.save = function(guest){
+  //   // to use firebase;
+  // }
 }
