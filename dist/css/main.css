@@ -1,6 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Courgette);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
 h1 {
-  font-size: 1.5rem;
+  font-size: 1.7rem;
   font-family: "Courgette", cursive; }
 
 .btn {
@@ -9,12 +10,17 @@ h1 {
 .bg-cloud {
   background-color: #D4E4EB;
   background-image: url("./../../images/sail.jpg");
-  background-size: cover; }
+  background-size: cover;
+  color: #444;
+  font-family: "Open Sans", sans-serif; }
 
 .container {
   max-width: 40em;
   margin: 0 auto;
   padding: 2em 1em; }
+
+.header-img {
+  width: 130px; }
 
 .prompt,
 .prompt__overlay {
