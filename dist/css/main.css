@@ -1,16 +1,20 @@
+@import url(https://fonts.googleapis.com/css?family=Courgette);
+h1 {
+  font-size: 1.5rem;
+  font-family: "Courgette", cursive; }
+
+.btn {
+  font-family: "Courgette", cursive; }
+
 .bg-cloud {
-  background: #ecf0f1; }
+  background-color: #D4E4EB;
+  background-image: url("./../../images/sail.jpg");
+  background-size: cover; }
 
 .container {
   max-width: 40em;
   margin: 0 auto;
   padding: 2em 1em; }
-
-.btn-3 {
-  margin: .5rem auto; }
-
-.rsvp1 .btn-1, .rsvp2 .btn-2, .rsvp3 .btn-3 {
-  background: yellow; }
 
 .prompt,
 .prompt__overlay {
@@ -27,7 +31,8 @@
   align-items: center;
   -webkit-justify-content: center;
   justify-content: center;
-  pointer-events: none; }
+  pointer-events: none;
+  z-index: 10; }
 
 .prompt__overlay {
   position: absolute;
@@ -57,12 +62,8 @@
   pointer-events: auto; }
 
 /* Content */
-.prompt h2 {
-  margin: 0;
-  font-weight: 400;
-  font-size: 2em;
-  padding: 0 0 2em;
-  margin: 0; }
+.prompt h4 {
+  font-size: 1.2rem; }
 
 .prompt {
   -webkit-align-items: flex-start;
@@ -84,12 +85,12 @@
   -webkit-animation-name: anim-close;
   animation-name: anim-close; }
 
-.prompt.prompt--open h2,
+.prompt.prompt--open h4,
 .prompt.prompt--open button {
   -webkit-animation: anim-elem 0.3s both;
   animation: anim-elem 0.3s both; }
 
-.prompt.prompt--open h2 {
+.prompt.prompt--open h4 {
   -webkit-animation-delay: 0.15s;
   animation-delay: 0.15s; }
 
@@ -143,3 +144,65 @@
     opacity: 1;
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0); } }
+
+.btn-3 {
+  margin: .5rem auto; }
+
+.rsvp1 .btn-1, .rsvp2 .btn-2, .rsvp3 .btn-3 {
+  color: #fff;
+  border-color: #fff;
+  background: #37474f; }
+
+/* Common button styles */
+.button {
+  width: 150px;
+  display: inline-block;
+  margin: 1em;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  vertical-align: middle;
+  position: relative;
+  z-index: 1;
+  -webkit-backface-visibility: hidden;
+  -moz-osx-font-smoothing: grayscale;
+  color: #37474f;
+  border-color: #37474f;
+  border: 3px solid #fff; }
+
+.button:focus {
+  outline: none; }
+
+.button--ujarak {
+  -webkit-transition: border-color 0.4s, color 0.4s;
+  transition: border-color 0.4s, color 0.4s; }
+
+.button--ujarak::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #37474f;
+  z-index: -1;
+  opacity: 0;
+  -webkit-transform: scale3d(0.7, 1, 1);
+  transform: scale3d(0.7, 1, 1);
+  -webkit-transition: -webkit-transform 0.4s, opacity 0.4s;
+  transition: transform 0.4s, opacity 0.4s;
+  -webkit-transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+  transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1); }
+
+.button--ujarak,
+.button--ujarak::before {
+  -webkit-transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+  transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1); }
+
+.button--ujarak:hover {
+  color: #fff;
+  border-color: #fff; }
+
+.button--ujarak:hover::before {
+  opacity: 1;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0); }
