@@ -69,11 +69,18 @@ module.exports = function($scope, $location, $http, $firebaseArray){
   }
 
   $scope.takeAction = function(i){
-    $scope.prompt = welcome[i].prompt;
-    $scope.guest.rsvp = i;
-    guestList.$save($scope.guest).then(function(ref) {
-      $scope.intro = $scope.setMessage($scope.guestName, $scope.guest.rsvp);
-    });
+    if($scope.guest.rsvp !== i){
+      $scope.prompt = welcome[i].prompt;
+      $scope.guest.rsvp = i;
+      guestList.$save($scope.guest).then(function(ref) {
+        $scope.intro = $scope.setMessage($scope.guestName, $scope.guest.rsvp);
+      });
+      $scope.setPromptClass("prompt--open");
+    }
+  }
+
+  $scope.setPromptClass = function(className){
+    $scope.promptClass = className;
   }
 
   function init(response){

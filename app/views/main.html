@@ -16,6 +16,10 @@
   <div><label>Date and time</label><time datetime="2015-11-14 12:00">14th Nov, 2015</time></div>
 </section>
 </div>
-<aside class="info-box">
-<div>{{prompt}}</div>
+<aside class="prompt {{promptClass}}">
+  <div class="prompt__overlay"></div>
+  <div class="prompt__content">
+    <h2>{{prompt}}</h2>
+    <button class="btn" ng-click="setPromptClass('prompt--close')">Close</button></div>
+  </div>
 </aside>
