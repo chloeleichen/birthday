@@ -1,14 +1,15 @@
-module.exports = function($scope, $location, $http){
+module.exports = function($scope, $location, $http, $firebaseArray){
   'use strict';
    var empObj = {
               "name": null,
               "rsvp": 5,
               "number": 0
-              };
+              },
+       data, guestList;
 
-  $scope.guests =[];
   $scope.path = $location.path().replace(/^\/|\/$/g, '');
   $scope.guest = empObj;
+  $scope.guests =[];
   $scope.prompt = "";
 
   var welcome =[
@@ -64,14 +65,15 @@ module.exports = function($scope, $location, $http){
   };
 
   $scope.setClass = function(){
-    return 'rsvp'+ $scope.guest.rsvp;
+    return "rsvp"+ $scope.guest.rsvp;
   }
 
   $scope.takeAction = function(i){
     $scope.prompt = welcome[i].prompt;
     $scope.guest.rsvp = i;
-    console.log($scope.guest);
-    //$scope.save();
+    guestList.$save($scope.guest).then(function(ref) {
+      $scope.intro = $scope.setMessage($scope.guestName, $scope.guest.rsvp);
+    });
   }
 
   function init(response){
@@ -81,19 +83,14 @@ module.exports = function($scope, $location, $http){
     $scope.intro = $scope.setMessage($scope.guestName, $scope.guest.rsvp);
   };
 
-// once we have got data from firebase 
-var data = [];
-init(data);
+  data = new Firebase("https://jbirthday.firebaseio.com/");
+  guestList = $firebaseArray(data);
 
-  // $http.get('./../data.json')
-  // .then(function(response){
-  //   init(response.data);
-  // },
-  // function(err){
-  //   console.log(err);
-  // });
-
-  // $scope.save = function(guest){
-  //   // to use firebase;
-  // }
+  guestList.$loaded()
+  .then(function(list) {
+    init(list);
+  })
+  .catch(function(error) {
+    console.log("Error:", error);
+  });
 }
