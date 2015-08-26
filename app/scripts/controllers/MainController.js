@@ -5,48 +5,51 @@ module.exports = function($scope, $location, $http, $firebaseArray){
               "rsvp": 5,
               "number": 0
               },
-       data, guestList;
+       data, 
+       guestList,
+       sub = "to Jeremy's 40th Party!";
 
   $scope.path = $location.path().replace(/^\/|\/$/g, '');
   $scope.guest = empObj;
   $scope.guests =[];
   $scope.prompt = "";
+  $scope.ready = false;
 
   var welcome =[
     {
       //init
       status: "0",
-      msg: "You are invited to ",
+      msg: "You are invited ",
       prompt: ""
     },
     {
       //rsvped
       status: "1",
-      msg: "You have RSVPed to ",
+      msg: "You have RSVPed ",
       prompt: "Great, see you there"
     },
     {
       // declined 
       status: "2",
-      msg: "You won't be coming to ",
+      msg: "You won't be coming ",
       prompt: "Sorry to hear that, you'll be missed"
     },
     {
       //pending 
       status: "3",
-      msg: "You have a pending invitation to ",
+      msg: "You have a pending invitation ",
       prompt: "Sure, you can tell us later"
     },
     {
       //noAccess
       status: "4",
-      msg: "Hi stranger, looks like you are not on the guest list to ",
+      msg: "Hi stranger, looks like you are not on the guest list",
       prompt: ""
     }
   ];
   $scope.setMessage = function(guestName, rsvp){
     if(guestName){
-      return ("Hi " + guestName +", "+ welcome[rsvp].msg);
+      return ("Hi " + guestName +", "+ welcome[rsvp].msg + sub);
     } else{
       return(welcome[4].msg);
     }
@@ -86,6 +89,9 @@ module.exports = function($scope, $location, $http, $firebaseArray){
   function init(response){
     $scope.guests = response;
     $scope.guest = $scope.getGuest($scope.path, $scope.guests);
+    if(($scope.guest.$id !== undefined) && ($scope.guest.$id !== null)){
+      $scope.ready = true;
+    }
     $scope.guestName = $scope.guest.name;
     $scope.intro = $scope.setMessage($scope.guestName, $scope.guest.rsvp);
   };

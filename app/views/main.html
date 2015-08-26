@@ -1,8 +1,8 @@
 <section class="head">
 <img class="header-img" src="./images/anchor.svg">
-  <h1> {{intro}} to Jeremy's 40th Party!</h1>
+  <h1 id="title"> {{intro}}</h1>
 </section>
-<section class="main">
+<section class="main" ng-show ="ready">
 <div class="rsvp-group list-reset" ng-class="setClass()" >
 <div>
 <button class="btn btn-1 button button--ujarak" ng-click="takeAction(1)" >RSVP</button>
@@ -15,9 +15,15 @@
 <div class="info">
   <div><label>location:</label> Some location </div>
   <div><label>Date and time</label><time datetime="2015-11-14 12:00">14th Nov, 2015</time></div>
-</section>
 </div>
+</section>
+
 <div class="mt2"><img src="./images/seperator.svg"></div>
+<footer class="container center" ng-show ="ready" >
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    </p>
+</footer>
+
 
 <aside class="prompt {{promptClass}}">
   <div class="prompt__overlay"></div>

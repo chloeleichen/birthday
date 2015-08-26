@@ -1,6 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Courgette);
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
-h1 {
+h1, h4 {
   font-size: 1.7rem;
   font-family: "Courgette", cursive; }
 
@@ -12,7 +12,9 @@ h1 {
   background-image: url("./../../images/sail.jpg");
   background-size: cover;
   color: #444;
-  font-family: "Open Sans", sans-serif; }
+  font-family: "Open Sans", sans-serif;
+  background-repeat: no-repeat;
+  min-height: 100vh; }
 
 .container {
   max-width: 40em;
@@ -57,7 +59,7 @@ h1 {
   width: 50%;
   max-width: 560px;
   min-width: 290px;
-  background: #fff;
+  background: #D4E4EB;
   padding: 4em;
   text-align: center;
   position: relative;

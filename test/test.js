@@ -10,11 +10,11 @@
   }));
   describe('MainController', function(){
     it("invitation", function(){
-      expect(scope.setMessage("Jess", 0)).toEqual("Hi Jess, You are invited to ");
-      expect(scope.setMessage("Sue", 1)).toEqual("Hi Sue, You have RSVPed to ");
-      expect(scope.setMessage("Matt", 2)).toEqual("Hi Matt, You won't be coming to ");
-      expect(scope.setMessage("John", 3)).toEqual("Hi John, You have a pending invitation to ");
-      expect(scope.setMessage("", 4)).toEqual("Hi stranger, looks like you are not on the guest list to ");
+      expect(scope.setMessage("Jess", 0)).toEqual("Hi Jess, You are invited to Jeremy's 40th Party!");
+      expect(scope.setMessage("Sue", 1)).toEqual("Hi Sue, You have RSVPed to Jeremy's 40th Party!");
+      expect(scope.setMessage("Matt", 2)).toEqual("Hi Matt, You won't be coming to Jeremy's 40th Party!");
+      expect(scope.setMessage("John", 3)).toEqual("Hi John, You have a pending invitation to Jeremy's 40th Party!");
+      expect(scope.setMessage("", 4)).toEqual("Hi stranger, looks like you are not on the guest list");
     });
     it("Check guest list", function(){
       var arr = [{

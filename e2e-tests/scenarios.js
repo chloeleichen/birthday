@@ -1,29 +1,7 @@
 'use strict';
-
-/* https://github.com/angular/protractor/blob/master/docs/toc.md */
-
-describe('my app', function() {
-
-
-  it('should automatically redirect to /view1 when location hash/fragment is empty', function() {
+describe('no access', function() {
+  it('stranger without the correct path will be denied access', function() {
     browser.get('index.html');
-    expect(browser.getLocationAbsUrl()).toMatch("/view1");
+    expect(element(by.css('title')).getText().toEqual('Hi stranger, looks like you are not on the guest list'));
   });
-
-
-  describe('view1', function() {
-
-    beforeEach(function() {
-      browser.get('index.html#/view1');
-    });
-
-
-    it('should render view1 when user navigates to /view1', function() {
-      expect(element.all(by.css('[ng-view] p')).first().getText()).
-        toMatch(/partial for view 1/);
-    });
-
-  });
-
-
 });
