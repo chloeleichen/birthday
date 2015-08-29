@@ -14,6 +14,7 @@ module.exports = function($scope, $location, $http, $firebaseArray){
   $scope.guests =[];
   $scope.prompt = "";
   $scope.ready = false;
+  $scope.intro = "hi";
 
   var welcome =[
     {

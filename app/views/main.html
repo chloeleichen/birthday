@@ -1,6 +1,6 @@
 <section class="head">
 <img class="header-img" src="./images/anchor.svg">
-  <h1 class="title"> {{intro}}</h1>
+  <h1 class="title" id="intro"> {{intro}}</h1>
 </section>
 <div ng-hide ="ready" class="loader">
 <img src="./images/loader.svg">
@@ -32,6 +32,6 @@
   <div class="prompt__overlay"></div>
   <div class="prompt__content">
     <h4>{{prompt}}</h4>
-    <button class="btn button button--ujarak" ng-click="setPromptClass('prompt--close')">Close</button></div>
+    <button id="close" class="btn button button--ujarak" ng-click="setPromptClass('prompt--close')">Close</button></div>
   </div>
 </aside>

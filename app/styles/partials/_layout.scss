@@ -8,18 +8,18 @@
   width: 130px;
 }
 
-.loader{
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  background: $base;
-  width: 100vw;
+// .loader{
+//   height: 100vh;
+//   position: fixed;
+//   top: 0;
+//   bottom: 0;
+//   left: 0;
+//   background: $base;
+//   width: 100vw;
 
-  img{
-    display: block;
-    margin: 0 auto;
-    @include vertical-align;
-  }
-}
+//   img{
+//     display: block;
+//     margin: 0 auto;
+//     @include vertical-align;
+//   }
+// }

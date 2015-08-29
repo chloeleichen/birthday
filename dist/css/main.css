@@ -71,23 +71,6 @@ h1, h4 {
 .header-img {
   width: 130px; }
 
-.loader {
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  background: #D4E4EB;
-  width: 100vw; }
-  .loader img {
-    display: block;
-    margin: 0 auto;
-    position: relative;
-    top: 50%;
-    -webkit-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%); }
-
 .prompt,
 .prompt__overlay {
   width: 100%;
