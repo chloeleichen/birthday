@@ -1,5 +1,52 @@
 @import url(https://fonts.googleapis.com/css?family=Courgette);
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
+@-webkit-keyframes anim-open {
+  0% {
+    -webkit-transform: translate3d(0, -100%, 0); }
+  100% {
+    -webkit-transform: translate3d(0, 0, 0); } }
+
+@keyframes anim-open {
+  0% {
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0); }
+  100% {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0); } }
+
+@-webkit-keyframes anim-close {
+  0% {
+    -webkit-transform: translate3d(0, 0, 0); }
+  100% {
+    -webkit-transform: translate3d(0, -100%, 0); } }
+
+@keyframes anim-close {
+  0% {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0); }
+  100% {
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0); } }
+
+/* Inner elements animations */
+@-webkit-keyframes anim-elem {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100px, 0); }
+  100% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0); } }
+
+@keyframes anim-elem {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100px, 0);
+    transform: translate3d(0, -100px, 0); }
+  100% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0); } }
+
 h1, h4 {
   font-size: 1.7rem;
   font-family: "Courgette", cursive; }
@@ -23,6 +70,23 @@ h1, h4 {
 
 .header-img {
   width: 130px; }
+
+.loader {
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  background: #D4E4EB;
+  width: 100vw; }
+  .loader img {
+    display: block;
+    margin: 0 auto;
+    position: relative;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%); }
 
 .prompt,
 .prompt__overlay {
@@ -105,53 +169,6 @@ h1, h4 {
 .prompt.prompt--open button {
   -webkit-animation-delay: 0.05s;
   animation-delay: 0.05s; }
-
-@-webkit-keyframes anim-open {
-  0% {
-    -webkit-transform: translate3d(0, -100%, 0); }
-  100% {
-    -webkit-transform: translate3d(0, 0, 0); } }
-
-@keyframes anim-open {
-  0% {
-    -webkit-transform: translate3d(0, -100%, 0);
-    transform: translate3d(0, -100%, 0); }
-  100% {
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0); } }
-
-@-webkit-keyframes anim-close {
-  0% {
-    -webkit-transform: translate3d(0, 0, 0); }
-  100% {
-    -webkit-transform: translate3d(0, -100%, 0); } }
-
-@keyframes anim-close {
-  0% {
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0); }
-  100% {
-    -webkit-transform: translate3d(0, -100%, 0);
-    transform: translate3d(0, -100%, 0); } }
-
-/* Inner elements animations */
-@-webkit-keyframes anim-elem {
-  0% {
-    opacity: 0;
-    -webkit-transform: translate3d(0, -100px, 0); }
-  100% {
-    opacity: 1;
-    -webkit-transform: translate3d(0, 0, 0); } }
-
-@keyframes anim-elem {
-  0% {
-    opacity: 0;
-    -webkit-transform: translate3d(0, -100px, 0);
-    transform: translate3d(0, -100px, 0); }
-  100% {
-    opacity: 1;
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0); } }
 
 .btn-3 {
   margin: .5rem auto; }

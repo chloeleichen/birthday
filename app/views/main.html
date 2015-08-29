@@ -1,20 +1,23 @@
 <section class="head">
 <img class="header-img" src="./images/anchor.svg">
-  <h1 id="title"> {{intro}}</h1>
+  <h1 class="title"> {{intro}}</h1>
 </section>
+<div ng-hide ="ready" class="loader">
+<img src="./images/loader.svg">
+</div>
 <section class="main" ng-show ="ready">
 <div class="rsvp-group list-reset" ng-class="setClass()" >
 <div>
-<button class="btn btn-1 button button--ujarak" ng-click="takeAction(1)" >RSVP</button>
-<button class="btn btn-2 button button--ujarak" ng-click="takeAction(2)" >Decline</button>
+<button id ="btn1" class="btn btn-1 button button--ujarak" ng-click="takeAction(1)" >RSVP</button>
+<button id ="btn2" class="btn btn-2 button button--ujarak" ng-click="takeAction(2)" >Decline</button>
 </div>
 <div>
-<button class="btn btn-3 button button--ujarak block" ng-click="takeAction(3)" >Decide Later</button>
+<button id ="btn3" class="btn btn-3 button button--ujarak block" ng-click="takeAction(3)" >Decide Later</button>
 </div>
 </div>
 <div class="info">
-  <div><label>location:</label> Some location </div>
-  <div><label>Date and time</label><time datetime="2015-11-14 12:00">14th Nov, 2015</time></div>
+  <div><label><strong>LOCATION:</strong></label><address class="block"> 1/4 Passy Ave, Hunters Hill </address> </div>
+  <div><label><strong>TIME:</strong></label><time class="block"datetime="2015-11-14 12:00">17: 00, 14th Nov, 2015</time></div>
 </div>
 </section>
 
