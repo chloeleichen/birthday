@@ -10,12 +10,13 @@ describe("birthday test", function () {
 
       var button = element(by.id('btn1')),
           message = element(by.binding('intro'));
-          button.click();
-          expect(message.getText()).toBe('hello stranger');
+          //button.click();
 
-    })
+          expect(message.getText()).toBe('hello stranger');
+      });
   });
-});
+
+})
 
 
 
